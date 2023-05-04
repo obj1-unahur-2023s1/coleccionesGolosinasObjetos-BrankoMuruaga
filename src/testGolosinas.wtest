@@ -78,12 +78,12 @@ test "gustos correctos"{
 
 test "gluten"{
 	
-	assert.that(bombon.contieneGluten())
-	assert.notThat(alfajor.contieneGluten())
-	assert.that(caramelo.contieneGluten())
-	assert.that(chupetin.contieneGluten())
-	assert.notThat(oblea.contieneGluten())
-	assert.notThat(chocolatin.contieneGluten())
+	assert.notThat(bombon.contieneGluten())
+	assert.that(alfajor.contieneGluten())
+	assert.notThat(caramelo.contieneGluten())
+	assert.notThat(chupetin.contieneGluten())
+	assert.that(oblea.contieneGluten())
+	assert.that(chocolatin.contieneGluten())
 	
 	pastillaTuttiFrutti.contieneGluten(true)
 	assert.that(pastillaTuttiFrutti.contieneGluten())
@@ -92,7 +92,7 @@ test "gluten"{
 	assert.notThat(pastillaTuttiFrutti.contieneGluten())
 	
 	golosinaBaniada.golosinaBase(chupetin)
-	assert.that(golosinaBaniada.contieneGluten())
+	assert.notThat(golosinaBaniada.contieneGluten())
 	
 	golosinaBaniada.golosinaBase(pastillaTuttiFrutti)
 	pastillaTuttiFrutti.contieneGluten(true)
@@ -102,7 +102,7 @@ test "gluten"{
 	assert.notThat(golosinaBaniada.contieneGluten())
 	
 	golosinaBaniada.golosinaBase(chocolatin)
-	assert.notThat(golosinaBaniada.contieneGluten())
+	assert.that(golosinaBaniada.contieneGluten())
 }
 
 test "morder golosinas" {

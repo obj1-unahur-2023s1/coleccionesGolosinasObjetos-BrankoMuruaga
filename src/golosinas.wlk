@@ -5,7 +5,7 @@ object bombon {
 	
 	method sabor() = frutilla
 	
-	method contieneGluten() = true
+	method contieneGluten() = false
 	
 	method precio() = 5
 	
@@ -22,7 +22,7 @@ object alfajor {
 	
 	method sabor() = chocolate
 	
-	method contieneGluten() = false
+	method contieneGluten() = true
 	
 	method precio() = 12
 	
@@ -38,14 +38,14 @@ object caramelo {
 	
 	method sabor() = frutilla
 	
-	method contieneGluten() = true
+	method contieneGluten() = false
 	
 	method precio() = 1
 	
 	method peso() = peso
 	
 	method recibirMordisco(){
-		peso --
+		peso = 0.max(peso - 1)
 	}
 }
 
@@ -54,7 +54,7 @@ object chupetin {
 	
 	method sabor() = naranja
 	
-	method contieneGluten() = true
+	method contieneGluten() = false
 	
 	method precio() = 2
 	
@@ -70,7 +70,7 @@ object oblea {
 	
 	method sabor() = vainilla
 	
-	method contieneGluten() = false
+	method contieneGluten() = true
 	
 	method precio() = 5
 	
@@ -92,7 +92,7 @@ object chocolatin {
 	
 	method sabor() = chocolate
 	
-	method contieneGluten() = false
+	method contieneGluten() = true
 	
 	method peso(nuevoPeso){
 		pesoActual = nuevoPeso
@@ -107,30 +107,22 @@ object chocolatin {
 	
 	
 	method recibirMordisco(){
-		pesoActual -= 2
+		pesoActual = 0.max(pesoActual - 2)
 	}
 }
 
 object pastillaTuttiFrutti {
 	var property contieneGluten
 	var property peso = 5
-	var property sabor = frutilla
 	const sabores = [frutilla, chocolate, naranja]
 	var posicionDelSabor = 0
 	
-	method precio(){
-		if(contieneGluten){
-			return 10
-		}
-		else{
-			return 7
-		}
-	}
+	method precio() = if(contieneGluten) 10 else 7
 	
+	method sabor() = sabores.get(posicionDelSabor % sabores.size())
 	
 	method recibirMordisco(){
 		posicionDelSabor++
-		self.sabor(sabores.get(posicionDelSabor % sabores.size()))
 	}
 }
 
@@ -150,7 +142,7 @@ object golosinaBaniada {
 	
 	method recibirMordisco(){
 		golosinaBase.recibirMordisco()
-		mordiscos--
+		mordiscos = 0.max(mordiscos - 1)
 	}
 }
 

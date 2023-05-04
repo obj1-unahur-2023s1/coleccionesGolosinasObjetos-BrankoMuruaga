@@ -2,7 +2,7 @@ import golosinas.*
 import sabores.*
 
 object mariano {
-	const bolsaDeGolosinas = #{}
+	const property bolsaDeGolosinas = []
 	var ultimaGolosinaComprada
 	var ultimaGolosinaDesechada
 	
@@ -32,15 +32,15 @@ object mariano {
 	
 	method golosinasDeSabor(unSabor) = bolsaDeGolosinas.filter({g => g.sabor() == unSabor})
 	
-	method sabores() = bolsaDeGolosinas.map({g => g.sabor()})
+	method sabores() = bolsaDeGolosinas.map({g => g.sabor()}).asSet()
 	
 	method golosinaMasCara() = bolsaDeGolosinas.max({g => g.precio()})
 	
 	method pesoGolosinas() = bolsaDeGolosinas.sum({g => g.peso()})
 	
-	method golosinasFaltantes(golosinasDeseadas) = golosinasDeseadas.difference(bolsaDeGolosinas)
+	method golosinasFaltantes(golosinasDeseadas) = golosinasDeseadas.asSet().difference(bolsaDeGolosinas.asSet())
 	
-	method gustosFaltantes(gustosDeseados) = gustosDeseados.difference(bolsaDeGolosinas.map{g => g.sabor()})
+	method gustosFaltantes(gustosDeseados) = gustosDeseados.asSet().difference(self.sabores())
 	
 	method gastoEn(sabor) = bolsaDeGolosinas.filter({g => g.sabor() == sabor}).sum({g => g.precio()})
 	

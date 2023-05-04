@@ -1,0 +1,25 @@
+import golosinas.*
+import sabores.*
+
+describe "test sobre chocolatin" {
+	
+	method initialize() {
+		chocolatin.peso(100)		
+	}
+	
+	test "chocolatin con peso inicial de 100"{
+		assert.equals(50, chocolatin.precio())
+	}
+	
+	test "chocolatin con peso 98"{
+		chocolatin.recibirMordisco()
+		assert.equals(98, chocolatin.peso())
+	}
+}
+
+describe "test sobre tutti Frutti" {
+	
+	test "inicialmente el sabor es frutilla" {
+		assert.equals(frutilla, pastillaTuttiFrutti.sabor())
+	}
+}
